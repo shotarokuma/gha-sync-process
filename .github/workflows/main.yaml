@@ -11,3 +11,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Check if a.txt exists
+        run: |
+          if [ -f a.txt ]; then
+            echo "a.txt exists"
+          else
+            echo "a.txt does not exist"
+          exit 1
+          fi
