@@ -1,7 +1,7 @@
 name: Auto Approve
 on:
   pull_request:
-    types:
+    types:to
       - ready_for_review
 jobs:
   approve:
