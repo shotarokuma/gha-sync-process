@@ -1,0 +1,18 @@
+on:
+  pull_request_review:
+    types: [submitted]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Sync with Base Branch
+        run: |
+          git checkout ${{ github.base_ref }}
+          git pull origin ${{ github.base_ref }}
+          git checkout ${{ github.head_ref }}
+          git merge ${{ github.base_ref }} --no-edit
+          git push origin ${{ github.head_ref }}
